@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0; 
+    width: 100%;
+    height: auto;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
+    color: #efefef;
+
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 10% 10% auto 10% 10%;
+    grid-template-rows: 33.33% auto 33.33%;
+}
+
+h2 {
+    font-family: 'IBM Plex Sans',sans-serif;
+}
+
+input {
+    width: 30%;
+    height: 50px;
+    padding: 20px;
+    margin: 0;
+    
+    box-sizing: border-box;
+    background: rgba(34, 104, 170, 0.5);
+    border-color: rgba(0,0,0,0);
+    border-radius: 20px;
+    outline: none;
+    
+    font-family: inherit;
+    font-size: 25px;
+    color: #fff;
+}
+
+button {
+    width: 150px;
+    height: 50px;
+    padding: 5px;
+    margin: 0;
+
+    background: rgba(24, 202, 48, 0.5);
+    border-color: rgba(0,0,0,0);
+    border-radius: 20px;
+    outline: none; 
+    
+    font-family: inherit;
+    font-size: 25px;
+    color: #fff;
+}
+
+button:hover {
+    cursor: pointer;
+    background: rgba(19, 180, 255, 0.8);
+    transition: .5s linear ;
+    
+}
+
+header {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+section {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+footer {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 3; 
+    
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+
+/* Weather Animations */
+
+/* Cloudy */
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.fog {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+}
+
+.fog__container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.fog__img {
+    position: absolute;
+    height: 100vh;
+    width: 300vw;
+}
+
+.fog__img--first {
+    background: url("https://res.cloudinary.com/dkr52htco/image/upload/v1536173269/fog-1.png") repeat-x;
+    background-size: contain;
+    background-position: center;
+    -webkit-animation: marquee 60s linear infinite;
+    animation: marquee 60s linear infinite;
+}
+
+.fog__img--second {
+    background: url("https://res.cloudinary.com/dkr52htco/image/upload/v1536173269/fog-2.png") repeat-x;
+    background-size: contain;
+    background-position: center;
+    -webkit-animation: marquee 40s linear infinite;
+    animation: marquee 40s linear infinite;
+}
+
+@-webkit-keyframes marquee {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(-200vw, 0, 0);
+        transform: translate3d(-200vw, 0, 0);
+    }
+}
+
+@keyframes marquee {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(-200vw, 0, 0);
+        transform: translate3d(-200vw, 0, 0);
+    }
+}
+
+
+/* Rainy */
+.drop {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(13, 52, 58, 1)), to(rgba(255, 255, 255, 0.6)));
+    background: -moz-linear-gradient(top, rgba(13, 52, 58, 1) 0%, rgba(255, 255, 255, .6) 100%);
+    width: 1px;
+    height: 89px;
+    position: absolute;
+    bottom: 200px;
+    -webkit-animation: fall .63s linear infinite;
+    -moz-animation: fall .63s linear infinite;
+
+}
+
+/* animate the drops*/
+@-webkit-keyframes fall {
+    to {
+        margin-top: 900px;
+    }
+}
+
+@-moz-keyframes fall {
+    to {
+        margin-top: 900px;
+    }
+}
+
+
+/* Snowy */
+.winter-is-coming,
+.snow {
+    z-index: 100;
+    pointer-events: none;
+}
+
+.winter-is-coming {
+    overflow: hidden;
+    position: absolute;
+}
+
+.snow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-animation: falling linear infinite both;
+    animation: falling linear infinite both;
+    -webkit-transform: translate3D(0, -100%, 0);
+    transform: translate3D(0, -100%, 0);
+}
+
+.snow--near {
+    -webkit-animation-duration: 10s;
+    animation-duration: 10s;
+    background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+    background-size: contain;
+}
+
+.snow--near+.snow--alt {
+    -webkit-animation-delay: 5s;
+    animation-delay: 5s;
+}
+
+.snow--mid {
+    -webkit-animation-duration: 20s;
+    animation-duration: 20s;
+    background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png");
+    background-size: contain;
+}
+
+.snow--mid+.snow--alt {
+    -webkit-animation-delay: 10s;
+    animation-delay: 10s;
+}
+
+.snow--far {
+    -webkit-animation-duration: 30s;
+    animation-duration: 30s;
+    background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png");
+    background-size: contain;
+}
+
+.snow--far+.snow--alt {
+    -webkit-animation-delay: 15s;
+    animation-delay: 15s;
+}
+
+@-webkit-keyframes falling {
+    0% {
+        -webkit-transform: translate3D(-7.5%, -100%, 0);
+        transform: translate3D(-7.5%, -100%, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3D(7.5%, 100%, 0);
+        transform: translate3D(7.5%, 100%, 0);
+    }
+}
+
+@keyframes falling {
+    0% {
+        -webkit-transform: translate3D(-7.5%, -100%, 0);
+        transform: translate3D(-7.5%, -100%, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3D(7.5%, 100%, 0);
+        transform: translate3D(7.5%, 100%, 0);
+    }
+}
