@@ -15,21 +15,32 @@ app.get("/weather", (req, res) => {
         });
     } 
     else {
-        utils.geocode(req.query.search_location, (error, data) => {
-            if (error){
-                res.send({error});
+        utils.geocode(req.query.search_location, (geocode_error, coordinates) => {
+            if (geocode_error) {
+                res.send({geocode_error});
             } 
-            else if (data) {
-                const { latitude, longitude, location } = data;
+            else if (coordinates) {
+                const { latitude, longitude, location } = coordinates;
 
-                utils.forecast(latitude, longitude, (error, data) => {
-                    if (error) {
-                        res.send({error});
+                utils.forecast(latitude, longitude, (forecast_error, weatherForecast) => {
+                    if (forecast_error) {
+                        res.send({forecast_error});
                     }
-                    else if (data){
-                        res.send({
-                            forecast: data,
-                            location
+                    else if (weatherForecast){
+
+                        utils.getTime(weatherForecast.timezone, (error, dateTime) => {
+                            if (error){
+                                res.send({
+                                    error
+                                });
+                            }
+                            else {
+                                res.send({
+                                    forecast: weatherForecast,
+                                    location,
+                                    dateTime: dateTime 
+                                });
+                            }
                         });
                     } 
                 });
@@ -39,7 +50,7 @@ app.get("/weather", (req, res) => {
 
 });
 
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 3000;
 app.listen(port, () => console.log("Server is up and running! ☻"));
 
 

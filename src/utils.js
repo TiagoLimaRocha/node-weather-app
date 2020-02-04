@@ -39,7 +39,7 @@ const forecast = (latitude, longitude, callback) => {
             callback("An error has occurred! Unable to find weather forecast for this location :(", undefined);
         } else {
             callback(undefined, {
-                time: response.body.currently.time,
+                timezone: response.body.timezone,
                 icon: response.body.currently.icon,
                 summary: response.body.currently.summary,
                 temperature: response.body.currently.temperature,
@@ -50,7 +50,26 @@ const forecast = (latitude, longitude, callback) => {
     });
 }
 
+const getTime = (timezone, callback) => {
+    const options = {
+        url: `http://worldtimeapi.org/api/timezone/${timezone}`,
+        json: true
+    };
+
+    request(options, (error, response) => {
+        if (error){
+            callback("An error has occured! Couldn't fetch current time.", undefined);
+        }
+        else {
+            callback(undefined, {
+                dateTime: response.body.datetime
+            });
+        }
+    })
+}
+
 module.exports = {
     geocode,
-    forecast
+    forecast,
+    getTime
 }

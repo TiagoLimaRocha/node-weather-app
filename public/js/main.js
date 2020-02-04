@@ -4,19 +4,22 @@ const currYear = date.getFullYear();
 
 document.getElementById("curr-year").innerHTML = currYear;
 
-// Set page background image
-const body = document.body;
+// Update page background image
 const currHour = date.getHours();
 
-if (currHour >= 7 && currHour <= 15){
-    body.style.backgroundImage = 'url("img/day.png")';
+const updateBg = time => {
+    const body = document.body;
+
+    if (time >= 7 && time <= 15) {
+        body.style.backgroundImage = 'url("img/day.png")';
+    } else if (time >= 16 && time <= 20) {
+        body.style.backgroundImage = 'url("img/afternoon.png")';
+    } else {
+        body.style.backgroundImage = 'url("img/night.png")';
+    }
 }
-else if (currHour >= 16 && currHour <= 20){
-    body.style.backgroundImage = 'url("img/afternoon.png")';
-}
-else {
-    body.style.backgroundImage = 'url("img/night.png")';
-}
+
+updateBg(currHour);
 
 
 // Rain FXs
@@ -61,19 +64,10 @@ weatherForm.addEventListener("submit", (e) => {
                                           <p>${data.forecast.summary}<p>`;
 
                     // Update background
-                    const unix_timestamp = data.forecast.time;
-                    const locationTime = new Date(unix_timestamp * 1000);
-                    const locationHour = locationTime.getHours();
-
-                    console.log(unix_timestamp);
-
-                    if (locationHour >= 7 && locationHour <= 15) {
-                        body.style.backgroundImage = 'url("img/day.png")';
-                    } else if (locationHour >= 16 && locationHour <= 20) {
-                        body.style.backgroundImage = 'url("img/afternoon.png")';
-                    } else {
-                        body.style.backgroundImage = 'url("img/night.png")';
-                    }
+                    const dateTime = data.dateTime.dateTime;
+                    const locationTime = dateTime.slice(11,13);
+                    
+                    updateBg(locationTime);
 
                     
                     // Weather FXs
