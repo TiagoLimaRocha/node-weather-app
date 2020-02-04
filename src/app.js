@@ -39,7 +39,7 @@ app.get("/weather", (req, res) => {
 
 });
 
-let port = process.argv.PORT || 8080;
+let port = process.env.PORT || 8080;
 app.listen(port, () => console.log("Server is up and running! ☻"));
 
 
