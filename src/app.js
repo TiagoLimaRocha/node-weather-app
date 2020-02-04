@@ -39,7 +39,7 @@ app.get("/weather", (req, res) => {
 
 });
 
-const port = process.argv.PORT || 3000;
+let port = process.argv.PORT || 8080;
 app.listen(port, () => console.log("Server is up and running! ☻"));
 
 
